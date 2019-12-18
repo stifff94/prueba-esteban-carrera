@@ -32,10 +32,18 @@ app.set('view engine', 'hbs');
 app.get('/', function(req, res) {
     
     getInfo("Quito","Guayaquil").then(archivo =>{
-        res.render('home', {    
-            datos1: archivo[0],
-            datos2: archivo[1],
-        });
+        if(archivo.length > 2){
+            res.render('home', {    
+                datos1: archivo,
+                datos2: archivo,
+            });
+        }
+        else{
+            res.render('home', {    
+                datos1: archivo[0],
+                datos2: archivo[1],
+            });
+        }
     }).catch(error =>{
         res.render('home', {    
             datos1: error,
@@ -48,13 +56,21 @@ app.get('/', function(req, res) {
 app.get('/about', function(req, res) {
     
     getInfo("Madrid","Paris").then(archivo =>{
+        if(archivo.length > 2){
+            res.render('about', {    
+                datos1: archivo,
+                datos2: archivo,
+            });
+        }
+        else{
+            res.render('about', {    
+                datos1: archivo[0],
+                datos2: archivo[1],
+            });
+        }
         
-        res.render('/about', {    
-            datos1: archivo[0],
-            datos2: archivo[1],
-        });
     }).catch(error =>{
-        res.render('/about', {    
+        res.render('about', {    
             datos1: error,
         });
     });
