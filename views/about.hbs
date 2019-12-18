@@ -2,29 +2,39 @@
 
    {{> navbar }}
 
-    <div class="jumbotron">
+    <div class="jumbotron ">
 
-        <h1 class="display-4"><a href="/">Ecuador</a>, Mundo</h1>
-        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+        <h1 class="display-4" align="center"><a href="/">Ecuador</a>, Mundo</h1>
         <hr class="my-4">
-        <div class="col-8">
+        <div class="container bg-primary">
+        <div class="row">
+        <div class="col-7 rounded" align="center">
             <p>
-                MADRID
-                <br>
-                {{ datos1 }}
+                
+                <div class="card border-primary mb-3" style="max-width: 18rem;">
+                <div class="card-header">MADRID</div>
+                <div class="card-body text-primary">
+                <h5 class="card-title">TEMPERATURA</h5>
+                <p class="card-text">{{ datos1 }} º</p>
+                </div>
+                </div>
             </p>
         </div>
 
-        <div class="col-4">
+        <div class="col-4 rounded" align="center">
             <p>
-                PARIS
-                <br>
-                {{ datos2 }}
+               <div class="card border-primary mb-3" style="max-width: 18rem;">
+                <div class="card-header">PARIS</div>
+                <div class="card-body text-primary">
+                <h5 class="card-title">TEMPERATURA</h5>
+                <p class="card-text">{{ datos2 }} º</p>
+                </div>
+                </div>
             </p>
                 
         </div>
-        
-        
+        </div>
+        </div>
     </div>
 
 {{> footer }}
