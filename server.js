@@ -11,6 +11,7 @@ require('./hbs/helpers');
 const getInfo = async(ciudad,ciudad2) => {
     console.log("llego")
     try {
+
         const coords = await ubicacion.getCiudadLatLon(ciudad);
         const temp = await clima.getClima(coords.lat, coords.lng);
         const coords2 = await ubicacion.getCiudadLatLon(ciudad2);
@@ -32,18 +33,13 @@ app.set('view engine', 'hbs');
 app.get('/', function(req, res) {
     
     getInfo("Quito","Guayaquil").then(archivo =>{
-        if(archivo.length > 2){
+        
             res.render('home', {    
                 datos1: archivo,
                 datos2: archivo,
             });
-        }
-        else{
-            res.render('home', {    
-                datos1: archivo[0],
-                datos2: archivo[1],
-            });
-        }
+        
+        
     }).catch(error =>{
         res.render('home', {    
             datos1: error,
