@@ -12,12 +12,11 @@ const getInfo = async(ciudad,ciudad2) => {
     console.log("llego")
     try {
 
-        const coords = await ubicacion.getCiudadLatLon('Quito');
-        const temp = await clima.getClima(coords.lat, coords.lng);
-        const coords2 = await ubicacion.getCiudadLatLon('Quito');
-        const temp2 = await clima.getClima(coords2.lat, coords2.lng);
-
-        return temp;
+        const coords = await ubicacion.getCiudadLatLon(ciudad);
+        const temp = await clima.getClima(coords.lat, coords.lon);
+        const coords2 = await ubicacion.getCiudadLatLon(ciudad2);
+        const temp2 = await clima.getClima(coords2.lat, coords2.lon);
+        return [temp,temp2];
     } catch (e) {
         return `No se pudo determinar el clima`;
     }
@@ -32,13 +31,19 @@ hbs.registerPartials(__dirname + '/views/parciales');
 app.set('view engine', 'hbs');
 
 app.get('/', function(req, res) {
-    
     getInfo("Quito","Guayaquil").then(archivo =>{
-        
+        if(archivo.length > 2){
             res.render('home', {    
                 datos1: archivo,
                 datos2: archivo,
             });
+        }
+        else{
+            res.render('home', {    
+                datos1: archivo[0],
+                datos2: archivo[1],
+            });
+        }
         
         
     }).catch(error =>{
