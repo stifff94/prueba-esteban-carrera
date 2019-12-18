@@ -13,9 +13,9 @@ const getInfo = async(ciudad,ciudad2) => {
     try {
 
         const coords = await ubicacion.getCiudadLatLon(ciudad);
-        const temp = await clima.getClima(coords.lat, coords.lon);
+        const temp = await clima.getClima(coords.lat, coords.lgn);
         const coords2 = await ubicacion.getCiudadLatLon(ciudad2);
-        const temp2 = await clima.getClima(coords2.lat, coords2.lon);
+        const temp2 = await clima.getClima(coords2.lat, coords2.lgn);
         return [temp,temp2];
     } catch (e) {
         return `No se pudo determinar el clima`;
