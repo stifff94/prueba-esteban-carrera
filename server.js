@@ -12,11 +12,12 @@ const getInfo = async(ciudad,ciudad2) => {
     console.log("llego")
     try {
 
-        const coords = await ubicacion.getCiudadLatLon(ciudad);
+        const coords = await ubicacion.getCiudadLatLon('Quito');
         const temp = await clima.getClima(coords.lat, coords.lng);
-        const coords2 = await ubicacion.getCiudadLatLon(ciudad2);
+        const coords2 = await ubicacion.getCiudadLatLon('Quito');
         const temp2 = await clima.getClima(coords2.lat, coords2.lng);
-        return [temp,temp2];
+
+        return temp;
     } catch (e) {
         return `No se pudo determinar el clima`;
     }
